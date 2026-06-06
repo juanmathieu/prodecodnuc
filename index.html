@@ -341,13 +341,12 @@ import { getFirestore, doc, setDoc, onSnapshot, collection, serverTimestamp }
 // ⚙️  CONFIGURACIÓN — reemplazá con tus datos de Firebase
 // ─────────────────────────────────────────────
 const firebaseConfig = {
-  apiKey: "AIzaSyALTULQpkGeZGm_PtcPxNfuEhaQuF0uJWs",
-  authDomain: "prode-conduc.firebaseapp.com",
-  projectId: "prode-conduc",
-  storageBucket: "prode-conduc.firebasestorage.app",
+  apiKey:            "AIzaSyALTULQpkGeZGm_PtcPxNfuEhaQuF0uJWs",
+  authDomain:        "prode-conduc.firebaseapp.com",
+  projectId:         "prode-conduc",
+  storageBucket:     "prode-conduc.firebasestorage.app",
   messagingSenderId: "89553782230",
-  appId: "1:89553782230:web:09fac1338f69364ac75077",
-  measurementId: "G-8CRR63F7N5"
+  appId:             "1:89553782230:web:09fac1338f69364ac75077"
 };
 const GROUP_CODE = "CONDUC";
 const ADMIN_NAME = "juan";   // nombre del admin en minúsculas sin espacios
@@ -1256,7 +1255,7 @@ function initPlaylist() {
 
   // Mostrar player
   const player = document.getElementById('audio-player');
-  if (player) { player.style.display = 'block'; }
+  if (player) { player.style.display = 'flex'; }
 
   // Autoplay al primer gesto
   const tryPlay = () => {
@@ -1322,30 +1321,19 @@ window.plToggleMute = () => {
 
 </script>
 
-<!-- PLAYER DE PLAYLIST -->
-<div id="audio-player"
-  style="display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:rgba(20,60,18,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:10px 14px;z-index:500;box-shadow:0 4px 20px rgba(0,0,0,.4);min-width:220px;max-width:260px">
-  <!-- canción actual -->
-  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-    <span style="font-size:20px">🎵</span>
-    <div style="flex:1;min-width:0">
-      <div id="pl-title" style="font-size:12px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
-      <div id="pl-artist" style="font-size:11px;color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
-    </div>
-  </div>
-  <!-- controles -->
-  <div style="display:flex;align-items:center;justify-content:center;gap:8px">
-    <button onclick="plPrev()" title="Anterior"
-      style="background:none;border:none;color:rgba(255,255,255,.8);font-size:18px;cursor:pointer;padding:2px 4px;line-height:1">⏮</button>
-    <button id="pl-play-btn" onclick="plToggle()" title="Play/Pausa"
-      style="background:rgba(45,122,39,.9);border:none;color:#fff;font-size:20px;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1">▶</button>
-    <button onclick="plNext()" title="Siguiente"
-      style="background:none;border:none;color:rgba(255,255,255,.8);font-size:18px;cursor:pointer;padding:2px 4px;line-height:1">⏭</button>
-    <button onclick="plToggleMute()" id="pl-mute-btn" title="Silenciar"
-      style="background:none;border:none;color:rgba(255,255,255,.6);font-size:16px;cursor:pointer;padding:2px 4px;margin-left:4px;line-height:1">🔊</button>
-  </div>
-  <!-- lista de canciones -->
-  <div id="pl-list" style="margin-top:8px;border-top:1px solid rgba(255,255,255,.1);padding-top:6px;display:flex;flex-direction:column;gap:2px"></div>
+<!-- CONTROLES DE AUDIO MINIMALISTAS -->
+<div id="audio-player" style="display:none;position:fixed;bottom:1.2rem;right:1.2rem;z-index:500;flex-direction:row;align-items:center;gap:6px">
+  <button id="pl-mute-btn" onclick="plToggleMute()" title="Silenciar/Activar música"
+    style="width:38px;height:38px;border-radius:50%;background:rgba(20,60,18,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.3);transition:transform .15s"
+    onmouseenter="this.style.transform='scale(1.1)'" onmouseleave="this.style.transform='scale(1)'">🔊</button>
+  <button onclick="plNext()" title="Siguiente canción"
+    style="width:38px;height:38px;border-radius:50%;background:rgba(20,60,18,.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.3);transition:transform .15s"
+    onmouseenter="this.style.transform='scale(1.1)'" onmouseleave="this.style.transform='scale(1)'">⏭</button>
+</div>
+<!-- IDs ocultos que sigue necesitando el JS -->
+<div style="display:none">
+  <div id="pl-title"></div><div id="pl-artist"></div>
+  <div id="pl-list"></div><button id="pl-play-btn"></button>
 </div>
 
 </body>
